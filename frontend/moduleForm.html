@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Form</title>
+    <link rel="stylesheet" href="css/stylemodule.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Module Form</h1>
+
+    <form id="moduleForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+            <button type="button" id="searchModuleBtn">Search Module</button>
+        </div>
+        <div class="form-group">
+            <label for="code_module">Code Module:</label>
+            <input type="text" id="code_module" name="code_module" required>
+        </div>
+        <div class="form-group">
+            <label for="designation_module">Désignation Module:</label>
+            <input type="text" id="designation_module" name="designation_module" required>
+        </div>
+        <div class="form-group">
+            <label for="coefficient">Coefficient:</label>
+            <input type="number" id="coefficient" name="coefficient" required>
+        </div>
+        <div class="form-group">
+            <label for="volume_horaire">Volume Horaire:</label>
+            <input type="number" id="volume_horaire" name="volume_horaire" required>
+        </div>
+        <div class="form-group">
+            <label for="filiere">Filière:</label>
+            <select name="filiere" id="filiere">
+                <option value="">Select Filière</option>
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+    <div class="button-group">
+        <button type="submit" id="submitModuleBtn">Submit</button>
+        <button type="button" id="deleteModuleBtn">Delete Module</button>
+        <button type="button" id="updateModuleBtn">Update Module</button>
+    </div>
+    </form>
+</div>
+    <script src="js/script.js"></script>
+</body>
+</html>

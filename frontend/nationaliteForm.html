@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nationalite Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        table {
+            width: 30%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+    <h1>Nationalite Management</h1>
+
+    <!-- Form for adding a new filiere -->
+     <div class="form-group">
+    <h2>Add Nationalité</h2>
+</div>
+    <form id="addNationaliteForm">
+        <div class="form-group">
+        <label for="codeNationalite">Code Nationalité:</label>
+        <input type="text" id="codeNationalite" name="codeNationalite" required>
+        <br>
+    </div>
+    <div class="form-group">
+        <label for="nationaliteName">Nationalité Name:</label>
+        <input type="text" id="nationaliteName" name="nationaliteName" required>
+    </div>
+    <div class="form-group">
+        <button type="submit">Add Nationalité</button>
+        </div>
+    </form>
+    <!-- Button to load all filieres -->
+     <div class="form-group">
+    <button id="viewNationalitebtn">View All Nationalites</button>
+</div>
+    <!-- Container to display all filieres -->
+    <div id="nationalitelist"></div>
+</div>
+    <script src="js/nationalite.js"></script>
+</body>
+</html>

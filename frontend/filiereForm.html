@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filiere Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        table {
+            width: 30%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Filiere Management</h1>
+     <div class="form-group">
+    <!-- Form for adding a new filiere -->
+    <form id="addFiliereForm">
+        <label for="filiereName">Filiere Name:</label>
+        <input type="text" id="filiereName" name="filiereName" required>
+        <button type="submit">Add Filiere</button>
+    </form>
+
+    <!-- Button to load all filieres -->
+    <button id="viewFilieresBtn">View All Filieres</button>
+</div>
+    <!-- Container to display all filieres -->
+    <div id="filieresList"></div>
+</div>
+    <script src="js/filiere.js"></script>
+</body>
+</html>

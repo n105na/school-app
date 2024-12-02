@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Bulletin</title>
+    <link rel="stylesheet" href="css/styles.css"> 
+    <!-- Add your CSS file if needed -->
+     <style>
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        margin-bottom: 5px;
+    }
+    .error-message {
+        color: rgb(187, 0, 255);
+    }
+    table {
+width: 100%;
+border-collapse: collapse;
+}
+
+th, td {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+th {
+background-color: #f2f2f2;
+}
+
+button {
+margin-bottom: 20px;
+padding: 10px 15px;
+font-size: 16px;
+cursor: pointer;
+}
+#bulletin-content {
+ display:block;
+ 
+}
+
+   
+
+   
+</style>
+    <!-- Your JavaScript file -->
+    
+</head>
+<body>
+    <div id="bulletin">
+    <div class="container">
+    <h1>Student Bulletin</h1>
+
+    <!-- Numero Field -->
+    <div class="form-group">
+        <label for="numero">Numero:</label>
+        <input type="number" id="numero" name="numero" required>
+        <button type="button" id="searchButton" onclick="searchStudent()">Search</button>
+    </div>
+    <div class="form-group">
+    <div id="studentPicture" style="margin-right: 30px;  float : right;">
+        <!-- The student's picture will be displayed here -->
+    </div>
+</div>
+    <!-- Civilité Field -->
+    <div class="form-group">
+        <label>Civilité:</label>
+        <input type="radio" id="Monsieur" name="civilite" value="Monsieur">
+        <label for="Monsieur">Monsieur</label>
+        <input type="radio" id="Madame" name="civilite" value="Madame">
+        <label for="Madame">Madame</label>
+        <input type="radio" id="Mademoiselle" name="civilite" value="Mademoiselle">
+        <label for="Mademoiselle">Mademoiselle</label>
+    </div>
+
+    <!-- Nom / Prenom Field -->
+    <div class="form-group">
+        <label for="nom_prenom">Nom / Prenom:</label>
+        <input type="text" id="nom_prenom" name="nom_prenom" readonly>
+    </div>
+
+    <!-- Filière Field -->
+    <div class="form-group">
+        <label for="filiere">Filière:</label>
+        <input type="text" id="filiere" name="filiere" readonly>
+    </div>
+    <div class="form-group">
+    <!-- Student Grades Table -->
+    <h2>Student Grades</h2>
+    <table id="gradesTable">
+        <thead>
+            <tr>
+               <!-- <th>ID</th>-->
+              <!--  <th>nom/prenom</th>-->
+                <!--<th>Filière</th>-->
+                <th>Nom Module</th>
+                <th>Code Module</th>
+                <th>Coefficient</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamic rows will be inserted here -->
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <!-- Total Coefficient and Moyenne Display -->
+    <div id="summary">
+        <p>Total Coefficient: <span id="totalCoefficient">0</span></p>
+        <p>Note* Coeff <span id="totalWeightedNote">0</span></p>
+        <p>Moyenne: <span id="moyenne">0</span></p>
+    </div>
+</div>
+</div>
+    <!-- bulletin.html -->
+<!-- Bulletin Content for Printing -->
+<div id="bulletin-content" style="display: none;">
+    <div class="conatiner">
+    <h1>Bulletin de Notes</h1>
+    <div class="student-details">
+      
+        <div id="printStudentPicture">
+            <img id="printStudentImage" src="" alt="Student Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        </div>
+        <p><strong>Nom / Prenom:</strong> <span id="printNomPrenom"></span></p>
+        <p><strong>Filière:</strong> <span id="printFiliere"></span></p>
+    </div>
+    
+    <h2>Grades</h2>
+    <div class="form-group">
+    <table id="printGradesTable">
+        <thead>
+            <tr>
+                <th>Nom Module</th>
+                <th>Code Module</th>
+                <th>Coefficient</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamic rows will be inserted here for print -->
+        </tbody>
+    </table>
+</div>
+    <div class="form-group">
+    <div id="printSummary">
+        <p><strong>Total Coefficient:</strong> <span id="printTotalCoefficient">0</span></p>
+        <p><strong>Note* Coeff:</strong> <span id="printTotalWeightedNote">0</span></p>
+        <p><strong>Moyenne:</strong> <span id="printMoyenne">0</span></p>
+    </div>
+</div>
+</div>
+</div>
+<button id="logoutBtn">Logout</button>
+
+
+<!-- Print Button -->
+<button type="button" onclick="printBulletin()">Download/Print Bulletin</button>
+</div>
+<script src="js/bull.js" ></script>
+</body>
+</html>

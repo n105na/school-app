@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Bulletin de Notes</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+        .container {
+            border: 2px solid black;
+            width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .section {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .input-group input[type="text"],
+        .input-group select {
+            margin-left: 10px;
+            padding: 5px;
+            width: 200px;
+        }
+        .button-group {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .table-section {
+            display: none;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #e0e0e0;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">Saisie Bulletin de Notes</div>
+
+    <div class="section">
+        <div class="input-group">
+            <label for="student-number">Numéro :</label>
+            <input type="text" id="student-number" value="15">
+            <button onclick="searchStudent()">Rechercher</button>
+        </div>
+
+        <div class="input-group">
+            <label>Civilité :</label>
+            <input type="radio" name="gender" value="Mr" checked> Mr
+            <input type="radio" name="gender" value="Mme"> Mme
+            <input type="radio" name="gender" value="Mlle"> Mlle
+        </div>
+
+        <div class="input-group">
+            <label>Nom / Prénom :</label>
+            <input type="text" value="Benali Farid" readonly>
+        </div>
+
+        <div class="input-group">
+            <label>Filière :</label>
+            <input type="text" value="3ISIL" readonly>
+        </div>
+
+        <div class="input-group">
+            <label>Module :</label>
+            <select id="module">
+                <option>Bases de Données</option>
+                <option>PAW</option>
+                <option>Génie Logiciel</option>
+                <option>Architecture</option>
+                <option>Algorithmique</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Code Module :</label>
+            <input type="text" id="code-module" value="001" readonly>
+        </div>
+
+        <div class="input-group">
+            <label>Coefficient :</label>
+            <input type="text" id="coefficient" value="4" readonly>
+        </div>
+
+        <div class="input-group">
+            <label>Note :</label>
+            <input type="text" id="note" value="15.00">
+        </div>
+
+        <div class="button-group">
+            <button onclick="saveData()">Enregistrer</button>
+            <button onclick="modifyData()">Modifier</button>
+            <button onclick="deleteData()">Supprimer</button>
+            <button onclick="displayList()">Afficher Liste</button>
+            <button onclick="displayBulletin()">Afficher Bulletin</button>
+        </div>
+    </div>
+
+    <div class="table-section" id="table-section">
+        <table>
+            <thead>
+                <tr>
+                    <th>N°Etudiant</th>
+                    <th>Filière</th>
+                    <th>Code module</th>
+                    <th>Nom module</th>
+                    <th>Coefficient</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody id="student-grades">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <div>Somme coefficients: <span id="sum-coefficients"></span></div>
+            <div>Somme Coef*Notes: <span id="sum-coef-notes"></span></div>
+            <div>Moyenne: <span id="average"></span></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const grades = [
+        { studentNumber: 15, filiere: "3ISIL", codeModule: "001", nomModule: "Bases de Données", coefficient: 4, note: 15.00 },
+        { studentNumber: 15, filiere: "3ISIL", codeModule: "002", nomModule: "PAW", coefficient: 3, note: 16.00 },
+        { studentNumber: 15, filiere: "3ISIL", codeModule: "003", nomModule: "Génie Logiciel", coefficient: 3, note: 15.00 },
+        { studentNumber: 15, filiere: "3ISIL", codeModule: "004", nomModule: "Architecture", coefficient: 3, note: 17.00 },
+        { studentNumber: 15, filiere: "3ISIL", codeModule: "005", nomModule: "Algorithmique", coefficient: 4, note: 14.00 },
+    ];
+
+    function displayBulletin() {
+        const studentNumber = parseInt(document.getElementById("student-number").value);
+        const studentGrades = grades.filter(g => g.studentNumber === studentNumber);
+        
+        if (studentGrades.length > 0) {
+            document.getElementById("table-section").style.display = "block";
+            const tableBody = document.getElementById("student-grades");
+            tableBody.innerHTML = "";
+            let sumCoefficients = 0, sumCoefNotes = 0;
+
+            studentGrades.forEach(grade => {
+                const row = `<tr>
+                    <td>${grade.studentNumber}</td>
+                    <td>${grade.filiere}</td>
+                    <td>${grade.codeModule}</td>
+                    <td>${grade.nomModule}</td>
+                    <td>${grade.coefficient}</td>
+                    <td>${grade.note}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+
+                sumCoefficients += grade.coefficient;
+                sumCoefNotes += grade.coefficient * grade.note;
+            });
+
+            document.getElementById("sum-coefficients").innerText = sumCoefficients;
+            document.getElementById("sum-coef-notes").innerText = sumCoefNotes;
+            document.getElementById("average").innerText = (sumCoefNotes / sumCoefficients).toFixed(2);
+        }
+    }
+
+    function displayList() {
+        // Functionality to display the list of all student grades can go here
+        displayBulletin(); // Just for demonstration
+    }
+
+    function saveData() {
+        alert("Data saved!");
+    }
+
+    function modifyData() {
+        alert("Data modified!");
+    }
+
+    function deleteData() {
+        alert("Data deleted!");
+    }
+</script>
+
+</body>
+</html>

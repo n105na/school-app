@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>university Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        table {
+            width: 30%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+    <h1>university Management</h1>
+     <div class="form-group">
+    <!-- Form for adding a new university -->
+    <form id="adduniversityForm">
+        <label for="universityName">University Name:</label>
+        <input type="text" id="universityName" name="universityName" required>
+        <button type="submit">Add university</button>
+    </form>
+
+    <!-- Button to load all universitys -->
+    <button id="viewuniversityBtn">View All Universities</button>
+</div>
+    <!-- Container to display all universitys -->
+    <div id="universityList"></div>
+</div>
+    <script src="js/university.js"></script>
+</body>
+</html>

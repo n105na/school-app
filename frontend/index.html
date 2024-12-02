@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="css/stylesindex.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Registration Form</h1>
+        <form id="userForm" enctype="multipart/form-data" action="/student/create/" method="POST">
+            
+            <!-- Personal Information Section -->
+            <div class="collapsible-section">
+                <h2 onclick="toggleSection('personal-info')">Personal Information</h2>
+                <div id="personal-info" class="section-content">
+                    <div class="form-group">
+                        <label for="numero">Numero:</label>
+                        <input type="number" id="numero" name="numero">
+                        <button type="button" id="searchButton" onclick="searchStudent()">Search</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Civilité:</label>
+                        <input type="radio" id="Monsieur" name="civilite" value="Monsieur">
+                        <label for="Monsieur">Monsieur</label>
+                        <input type="radio" id="madame" name="civilite" value="Madame">
+                        <label for="madame">Madame</label>
+                        <input type="radio" id="mademoiselle" name="civilite" value="Mademoiselle">
+                        <label for="mademoiselle">Mademoiselle</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom_prenom">Nom / Prenom:</label>
+                        <input type="text" id="nom_prenom" name="nom_prenom" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Information Section -->
+            <div class="collapsible-section">
+                <h2 onclick="toggleSection('address-info')">Address Information</h2>
+                <div id="address-info" class="section-content">
+                    <div class="form-group">
+                        <label for="adresse">Adresse:</label>
+                        <input type="text" id="adresse" name="adresse" required>
+                    </div>
+                    <div class="form-group inline-group">
+                        <div>
+                            <label for="no_postal">No Postal:</label>
+                            <input type="text" id="no_postal" name="no_postal" maxlength="4" required>
+                        </div>
+                        <div>
+                            <label for="localite">Localité:</label>
+                            <input type="text" id="localite" name="localite" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Pays:</label>
+                        <select id="country" name="country">
+                            <option value="France" selected>France</option>
+                            <option value="Belgique" selected>Belgique</option>
+                            <option value="Algerie" selected>Algerie</option>
+                            <option value="Maroc" selected>Maroc</option>
+                            <option value="Tunisie" selected>Tunisie</option>
+                            <option value="Portugal" selected>Portugal</option>
+                            <option value="Canada" selected>Canada</option>
+                            <option value="Allemagne" selected>Allemagne</option>
+                            <option value="Espagne" selected>Espagne</option>
+                            <option value="Italie" selected>Italie</option>
+                            <option value="États-Unis" selected>États-Unis</option>
+                            <option value="Royaume-Uni" selected>Royaume-Uni</option>
+                            <option value="Suisse" selected>Suisse</option>
+                            <option value="Australie" selected>Australie</option>
+                            <option value="Japon" selected>Japon</option>
+                            <option value="Brésil" selected>Brésil</option>
+                            <!-- More countries here -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform and Applications Section -->
+            <div class="collapsible-section">
+                <h2 onclick="toggleSection('platform-applications')">Platform and Applications</h2>
+                <div id="platform-applications" class="section-content">
+                    <div class="form-group">
+                        <label>Platform(s):</label>
+                        <input type="checkbox" id="windows" name="platform" value="windows">
+                        <label for="windows">Windows</label>
+                        <input type="checkbox" id="macintoch" name="platform" value="macintoch">
+                        <label for="macintoch">Macintosh</label>
+                        <input type="checkbox" id="unix" name="platform" value="unix">
+                        <label for="unix">Unix</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="application">Application(s):</label>
+                        <select id="application" name="application" multiple>
+                            <option value="SGBD">Bureautique</option>
+                            <option value="Daw">Daw</option>
+                            <option value="Poo">Poo</option>
+                            <option value="SGBD">SGBD</option>
+                            <option value="Internet">Internet</option>
+                            <option value="System">System</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sports, Filiere, Nationality Section -->
+            <div class="collapsible-section">
+                <h2 onclick="toggleSection('additional-info')">Additional Information</h2>
+                <div id="additional-info" class="section-content">
+                    <div class="form-group">
+                        <label for="sports">Sports:</label>
+                        <select name="sports" id="sports" multiple>
+                            <!-- Options for sports here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filiere">Filière:</label>
+                        <select name="filiere" id="filiere">
+                            <!-- Filiere options here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nationalite">Nationalité:</label>
+                        <select name="nationalite" id="nationalite">
+                            <!-- Nationalité options here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="code_nationalite">Code Nationalité:</label>
+                        <input type="text" id="code_nationalite" name="code_nationalite" >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Upload Section -->
+            <div class="collapsible-section">
+                <h2 onclick="toggleSection('image-upload')">Image Upload</h2>
+                <div id="image-upload" class="section-content">
+                    <div class="form-group">
+                        <input type="file" id="image" name="student_image" accept="image/*" onchange="previewImage(event)">
+                        <img id="imagePreview" alt="Aperçu de l'image" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="button" onclick="affichage()">Affichage JavaScript</button>
+                <button type="submit">Submit</button>
+                <button type="button" id="updateButton">Update Student</button>
+                <button type="button" id="deleteBtn">Delete</button>
+            </div>
+        </form>
+        <div id="results"></div>
+    </div>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

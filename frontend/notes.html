@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin de Notes</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        .error-message {
+            color: rgb(187, 0, 255);
+        }
+        table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#studentImage {
+    margin-top: 2px;
+    max-width: 500px; /* Limit the width of the preview */
+    max-height: 500px; /* Limit the height of the preview */
+    display:flex; /* Hide preview by default */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Bulletin de Notes</h1>
+
+    <form id="notesForm">
+        <!-- Numero Field -->
+        <div class="form-group">
+            <label for="numero">Numero:</label>
+            <input type="number" id="numero" name="numero" required>
+            <button type="button" id="searchButton" onclick="searchStudent()">Search</button>
+        </div>
+        <!-- Student's Image Display Section -->
+        <div id="studentImageContainer" style="display:none;"> <!-- Hide the container initially -->
+            
+            <img id="studentImage" src="" alt="Student Picture" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; float: right; position: relative;">
+        </div>
+        
+        <!-- Civilité Field -->
+        <div class="form-group">
+            <label>Civilité:</label>
+            <input type="radio" id="Monsieur" name="civilite" value="Monsieur">
+            <label for="Monsieur">Monsieur</label>
+            <input type="radio" id="Madame" name="civilite" value="Madame">
+            <label for="Madame">Madame</label>
+            <input type="radio" id="Mademoiselle" name="civilite" value="Mademoiselle">
+            <label for="Mademoiselle">Mademoiselle</label>
+        </div>
+
+        <!-- Nom / Prenom Field -->
+        <div class="form-group">
+            <label for="nom_prenom">Nom / Prenom:</label>
+            <input type="text" id="nom_prenom" name="nom_prenom" readonly>
+        </div>
+
+        <!-- Filière Field -->
+        <div class="form-group">
+            <label for="filiere">Filière:</label>
+            <input type="text" id="filiere" name="filiere" readonly>
+        </div>
+
+        <!-- Module Field -->
+        <div class="form-group">
+            <label for="module">Module:</label>
+            <select id="module" name="module" required>
+                <option value="">Select Module</option>
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+
+        <!-- Code Module Field -->
+        <div class="form-group">
+            <label for="code_module">Code Module:</label>
+            <input type="text" id="code_module" name="code_module" readonly>
+        </div>
+
+        <!-- Coefficient Field -->
+        <div class="form-group">
+            <label for="coefficient">Coefficient:</label>
+            <input type="number" id="coefficient" name="coefficient" step="0.1" readonly>
+        </div>
+
+        <!-- Note Field -->
+        <div class="form-group">
+            <label for="note">Note:</label>
+            <input type="number" id="note" name="note" step="0.1" required>
+        </div>
+
+        <button type="button" id="enregistrerButton" onclick="enregistrerNote()">Enregistrer</button>
+        <button type="button" id="" onclick="modifyNote()">Modifier</button>
+        <button type="button" id="" onclick="deleteNote()">Supprimer</button>
+        <!--<button onclick="window.location.href='affichage.html'">Affichage</button>-->
+        <button type="button" id="afficherButton" >Afficher List</button>
+        <button type="button" onclick="window.location.href='bulletin.html'" >Afficher Bulletin</button>
+        
+        <div>
+            <div class="form-group">
+        <table id="notesTable">
+           
+                <thead>
+                    <tr>
+                        <th>Num Étudiant</th>
+                        <th>Nom Module</th>
+                        <th>Code Module</th>
+                        <th>Coefficient</th>
+                        <th>Note</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody> <!-- Dynamic content goes here -->
+            </table>
+        </div>
+
+    </div>
+
+    </form>
+</div>
+<div class="form-group">
+    <div id="responseMessage" class="error-message"></div>
+</div>
+<div id="filiereContainer"></div> 
+    
+</body>
+<script src="js/bulletin_notes.js"></script>
+</html>

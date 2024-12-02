@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <button id="registerUserBtn">Register New User</button>
+        <button onclick="window.location.href='tables.html'">Main menu</button>
+        
+        
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTable"></tbody>
+        </table>
+
+        <!-- Edit User Modal -->
+        <div id="editUserModal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="document.getElementById('editUserModal').style.display='none'">&times;</span>
+                <h2>Edit User</h2>
+                
+                <form id="editUserForm" class="form-group">
+                    <input type="text" id="editUserId" readonly/>
+                    <label for="editEmail">Email:</label>
+                    <input type="text" id="editEmail" required />
+                    <label for="editRole">Role:</label>
+                    <input type="text" id="editRole" required />
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+        <button id="logoutBtn">Logout</button>
+
+
+        <div id="messageArea"></div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>// Call this function when the admin dashboard page is loaded
+checkAdminAccess();
+</script>
+</body>
+</html>

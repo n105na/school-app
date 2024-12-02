@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Form</title>
+    <link rel="stylesheet" href="css/stylesteacher.css">
+</head>
+<body>
+    <div class="container">
+    <h1 >Teacher Form</h1>
+    <form id="teacherForm" enctype="multipart/form-data" >
+        
+        <div class="form-group">
+            <label for="numero">numero</label> 
+            <input type="number" id="numero" name="numero" required>
+            <button type="button" id="searchTeacherBtn">Search Teacher</button>
+        </div>
+        <div class="form-group">
+            <label for="civilite">Civilité:</label>
+            <select id="civilite" name="civilite" required>
+                <option value="Monsieur">Monsieur</option>
+                <option value="Madame">Madame</option>
+                <option value="Mademoiselle">Mademoiselle</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nom_prenom">Nom / Prénom:</label>
+            <input type="text" id="nom_prenom" name="nom_prenom" required>
+        </div>
+        <div class="form-group">
+            <label for="adresse">Adresse:</label>
+            <input type="text" id="adresse" name="adresse" required>
+        </div>
+        <div class="form-group">
+            <label for="date_naissance">Date de Naissance:</label>
+            <input type="date" id="date_naissance" name="date_naissance" required>
+        </div>
+        <div class="form-group">
+            <label for="lieu_naissance">Lieu de Naissance:</label>
+            <input type="text" id="lieu_naissance" name="lieu_naissance" required>
+        </div>
+        <div class="form-group">
+            <label for="pays">Pays:</label>
+            <select id="pays" name="pays">
+                <option value="Belgique">Belgique</option>
+                <option value="France">France</option>
+                <option value="Allemagne">Allemagne</option>
+                <!-- Add more countries as needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="grade">Grade:</label>
+            <select id="grade" name="grade">
+                <option value="Assistant">Assistant</option>
+                <option value="MAB">MAB</option>
+                <option value="MAA">MAA</option>
+                <option value="MCB">MCB</option>
+                <option value="MCA">MCA</option>
+                <option value="Professeur">Professeur</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="specialite">Spécialité:</label>
+            <select id="specialite" name="specialite">
+                <option value="Informatique">Informatique</option>
+                <option value="Mathématiques">Mathématiques</option>
+                <option value="Anglais">Anglais</option>
+                <option value="Autres">Autres</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="university">University:</label>
+            <select name="university" id="university">
+                <option value="">Select University</option>
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+        
+      <div class="form_group">
+        <button type="submit" id="submitTeacherBtn">Submit</button>
+        <button type="button" id="updateTeacherBtn">Update Teacher</button>
+        <button type="button" id="deleteTeacherBtn">Delete Teacher</button>
+      </div>
+    </form>
+</div>
+    
+    <script src="js/teacherForm.js"></script>
+</body>
+</html>

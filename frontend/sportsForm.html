@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        table {
+            width: 30%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Sports Management</h1>
+
+    <!-- Form for adding a new sport -->
+    <form id="addSportForm">
+        <div class="form-group">
+        <label for="sportName">Sport Name:</label>
+        <input type="text" id="sportName" name="sportName" required>
+        <button type="submit">Add Sport</button>
+    </div>
+    </form>
+
+    <!-- Button to load all sports -->
+     <div class="form-group">
+    <button id="viewSportsBtn">View All Sports</button>
+</div>
+    <!-- Container to display all sports -->
+    <div id="sportsList"></div>
+</div>
+    <script src="js/sports.js"></script>
+</body>
+</html>

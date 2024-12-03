@@ -13,25 +13,12 @@ from .serializers import (
 from student.models import Student
 from module_app.models import Module
 from collections import defaultdict
-
 from django.db.models import Avg, Min, Max, Sum
 from django.core.mail import send_mail
 from django.conf import settings
-
-
 from .serializers import BulletinSerializer
-# notes/views.py
-from django.core.mail import send_mail
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
-from student.models import Student
-from django.conf import settings
-
 from django.core.mail import EmailMessage
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from student.models import Student
 from notes.models import Note
 
 @api_view(['POST'])
@@ -87,7 +74,7 @@ def send_student_bulletin(request, numero):
         email = EmailMessage(
             subject="Student Bulletin",
             body=email_content,
-            from_email="your_email@example.com",  # Replace with your email
+            from_email="benainibenaini20@gmail.com",  # Replace with your email
             to=["benaini2021@gmail.com"],  # Replace with the recipient's email
         )
         email.content_subtype = "html"  # Set the content type to HTML
@@ -136,6 +123,52 @@ def get_student_bulletin(request, numero):
     
 
 
+import base64
+from django.core.mail import EmailMessage
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
+@api_view(['POST'])
+def send_admis_nonadmis_chart(request):
+    try:
+        admis_count = request.data.get('admis_count')
+        non_admis_count = request.data.get('non_admis_count')
+        recipient_email = request.data.get('email', 'benaini2021@gmail.com')
+
+        # Create HTML content for the email
+        html_content = f"""
+        <html>
+            <body>
+                <h3>Admis and Non Admis Statistics</h3>
+                <p>Here is the chart representation:</p>
+                <img src="cid:chart_image" alt="Chart Image" />
+                <p>Admis: {admis_count}, Non Admis: {non_admis_count}</p>
+            </body>
+        </html>
+        """
+
+        # Generate a base64-encoded image of the chart
+        chart_data = request.data.get('chart_image_base64')  # Base64 image from the frontend
+        image_data = base64.b64decode(chart_data.split(',')[1])  # Decode the base64 string
+
+        # Email configuration
+        email = EmailMessage(
+            subject="Admis and Non Admis Chart",
+            body=html_content,
+            from_email="benainibenaini20@example.com",
+            to=[recipient_email],
+        )
+        email.content_subtype = "html"  # Set to HTML content
+
+        # Attach the chart image
+        email.attach("chart.png", image_data, "image/png")
+        email.send()
+
+        return Response({"message": "Email sent successfully!"}, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
 def get_moyenne_generale_stats(request):

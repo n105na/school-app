@@ -187,3 +187,32 @@ async function logout() {
 }
 
 
+document.getElementById('sendEmailButton').addEventListener('click', async () => {
+    const numero = document.getElementById('numero').value; // Student number input
+    const token = getCSRFToken();
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/notes/send_bulletin/${numero}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': token,
+            },
+            credentials: 'include',
+        });
+        
+        if (!response.ok) {
+            const errorText = await response.text(); // Read error response as plain text
+            console.error('Error response:', errorText);
+            throw new Error('Failed to send email.');
+        }
+        
+        const data = await response.json(); // Parse JSON response
+        alert(data.message || 'Email sent successfully!');
+        
+        
+    } catch (error) {
+        console.error('Error sending email:', error);
+        alert(`Error: ${error.message}`);
+    }
+});

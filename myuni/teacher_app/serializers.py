@@ -9,4 +9,5 @@ class UniversitySerializer(serializers.ModelSerializer):
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['numero', 'civilite', 'nom_prenom', 'adresse', 'lieu_naissance', 'date_naissance', 'pays', 'grade', 'specialite']
+        fields = ['numero', 'civilite', 'nom_prenom', 'adresse', 'lieu_naissance', 'date_naissance', 'pays', 'grade', 'specialite', 'email']
+        

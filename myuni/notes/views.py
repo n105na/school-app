@@ -206,6 +206,96 @@ def get_moyenne_generale_stats(request):
   
 
 
+from teacher_app.models import Teacher
+
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.db.models import Sum
+from collections import defaultdict
+
+from rest_framework.decorators import api_view
+
+
+
+@api_view(['POST'])
+def send_emails_to_teachers(request):
+    """
+    Sends an email to all teachers in the database with PV data included.
+    """
+    try:
+        # Fetch all teachers with email addresses
+        teachers = Teacher.objects.all()
+        email_addresses = [teacher.email for teacher in teachers if teacher.email]
+
+        # Retrieve PV data
+        notes = Note.objects.select_related('student', 'module', 'student__filiere').all()
+
+        filiere_data = defaultdict(list)
+        for note in notes:
+            student_notes = Note.objects.filter(student=note.student)
+            total_weighted_notes = 0
+            total_coefficients = 0
+            for student_note in student_notes:
+                total_weighted_notes += student_note.note * student_note.module.coefficient
+                total_coefficients += student_note.module.coefficient
+            moyenne_generale = total_weighted_notes / total_coefficients if total_coefficients else None
+            note_info = {
+                "num_etudiant": note.student.numero,
+                "nom_prenom": note.student.nom_prenom,
+                "moyenne_generale": moyenne_generale
+            }
+            filiere_name = note.student.filiere.name if note.student.filiere else "N/A"
+            filiere_data[filiere_name].append(note_info)
+
+        result = []
+        for filiere, notes in filiere_data.items():
+            moyennes = [note["moyenne_generale"] for note in notes if note["moyenne_generale"] is not None]
+            filiere_stats = {
+                "filiere": filiere,
+                "notes": notes,
+                "moyenne_generale": sum(moyennes) / len(moyennes) if moyennes else None,
+                "moyenne_min": min(moyennes) if moyennes else None,
+                "moyenne_max": max(moyennes) if moyennes else None
+            }
+            result.append(filiere_stats)
+
+        # Format PV data into the email content as an HTML table
+        pv_message = "<h3>Performance View (PV)</h3>"
+        
+        for filiere_stats in result:
+            # Add filière information
+            pv_message += f"<h4>Filière: {filiere_stats['filiere']}</h4>"
+            pv_message += f"<p>Moyenne Générale: {filiere_stats['moyenne_generale']:.2f} (Min: {filiere_stats['moyenne_min']:.2f}, Max: {filiere_stats['moyenne_max']:.2f})</p>"
+            
+            # Create a table for students
+            pv_message += "<table border='1' style='border-collapse: collapse; width: 100%;'>"
+            pv_message += "<thead><tr><th>Num Étudiant</th><th>Nom Étudiant</th><th>Moyenne Générale</th></tr></thead><tbody>"
+            
+            # Create a set to store unique students
+            student_map = {note["num_etudiant"]: note for note in filiere_stats['notes']}
+
+            for student in student_map.values():
+                pv_message += "<tr>"
+                pv_message += f"<td>{student['num_etudiant']}</td>"
+                pv_message += f"<td>{student['nom_prenom']}</td>"
+                pv_message += f"<td>{student['moyenne_generale']:.2f}</td>"
+                pv_message += "</tr>"
+
+            pv_message += "</tbody></table>"
+
+        # Email content
+        subject = "Performance Bulletin"
+        message = f"Dear Teacher,<br><br>Here is the latest performance bulletin.<br><br>{pv_message}<br><br>Best Regards,<br>School Administration"
+        sender_email = "Amina Benaini"  # Replace with your email
+
+        # Send the email with HTML content
+        send_mail(subject, message, sender_email, email_addresses, fail_silently=False, html_message=message)
+
+        return JsonResponse({"message": "Emails sent successfully to all teachers."}, status=200)
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
 @api_view(['GET'])
 def list_notes_view(request):
     """

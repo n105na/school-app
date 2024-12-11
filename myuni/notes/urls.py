@@ -17,6 +17,7 @@ urlpatterns = [
     path('moyenne-generale/', views.get_moyenne_generale_stats, name='get_moyenne_generale_stats'),
     path('send_bulletin/<str:numero>/', views.send_student_bulletin, name='send_student_bulletin'),
     path('send-email/', views.send_admis_nonadmis_chart, name='send-email'),
+    path('send-emails/', views.send_emails_to_teachers, name='send_emails_to_teachers'),
 ]
 
 if settings.DEBUG:

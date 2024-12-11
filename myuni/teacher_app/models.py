@@ -49,6 +49,8 @@ class Teacher(models.Model):
     ]
     specialite = models.CharField(max_length=50, choices=SPECIALITE_CHOICES)
     university = models.ManyToManyField(University)
-
+     
+    #adding the email field
+    email = models.EmailField(unique=True,null= False)
     def __str__(self):
         return f"{self.nom_prenom} - {self.numero}"

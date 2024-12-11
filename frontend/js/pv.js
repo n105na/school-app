@@ -95,3 +95,38 @@ function printBulletin() {
     window.print();
     document.body.innerHTML = originalContent;
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchNotesAndCalculatePV();
+
+    // Add event listener for the "Send Emails" button
+    const sendEmailsButton = document.getElementById('sendEmailsButton');
+    sendEmailsButton.addEventListener('click', sendEmailsToTeachers);
+});
+
+function sendEmailsToTeachers() {
+    fetch('http://127.0.0.1:8000/api/notes/send-emails/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            const emailStatus = document.getElementById('emailStatus');
+            if (data.message) {
+                emailStatus.innerText = data.message;
+                emailStatus.style.color = 'green';
+            } else if (data.error) {
+                emailStatus.innerText = `Error: ${data.error}`;
+                emailStatus.style.color = 'red';
+            }
+        })
+        .catch(error => {
+            console.error('Error sending emails:', error);
+            const emailStatus = document.getElementById('emailStatus');
+            emailStatus.innerText = 'An error occurred while sending emails.';
+            emailStatus.style.color = 'red';
+        });
+}

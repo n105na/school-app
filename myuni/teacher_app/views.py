@@ -21,7 +21,8 @@ def create_university(request):
 
 @api_view(['GET'])
 def get_teachers(request):
-    teachers = Teacher.objects.all().values('numero', 'nom_prenom', 'civilite')  # Fetching teachers with id, name, and civility
+    teachers = Teacher.objects.all().values('numero', 'nom_prenom', 'civilite', 'email') 
+    
     return JsonResponse(list(teachers), safe=False)
 
 

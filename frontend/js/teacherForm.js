@@ -5,6 +5,7 @@ document.getElementById('teacherForm').addEventListener('submit', function(event
     const teacherData = {
         civilite: document.getElementById('civilite').value,
         nom_prenom: document.getElementById('nom_prenom').value,
+        email: document.getElementById('email').value,
         adresse: document.getElementById('adresse').value,
         date_naissance: document.getElementById('date_naissance').value,
         lieu_naissance: document.getElementById('lieu_naissance').value,
@@ -56,6 +57,7 @@ document.getElementById('searchTeacherBtn').addEventListener('click', function()
             document.getElementById('numero').value = data.numero;
             document.getElementById('civilite').value = data.civilite;
             document.getElementById('nom_prenom').value = data.nom_prenom;
+            document.getElementById('email').value = data.email;
             document.getElementById('adresse').value = data.adresse;
             document.getElementById('date_naissance').value = data.date_naissance;
             document.getElementById('lieu_naissance').value = data.lieu_naissance;
@@ -106,6 +108,7 @@ document.getElementById('updateTeacherBtn').addEventListener('click', function (
     const updatedTeacherData = {
         civilite: document.getElementById('civilite').value,
         nom_prenom: document.getElementById('nom_prenom').value,
+        email: document.getElementById('email').value,
         adresse: document.getElementById('adresse').value,
         date_naissance: document.getElementById('date_naissance').value,
         lieu_naissance: document.getElementById('lieu_naissance').value,

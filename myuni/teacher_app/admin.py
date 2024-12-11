@@ -8,10 +8,12 @@ class TeacherAdmin(admin.ModelAdmin):
         'nom_prenom',     # Display the name
         'grade',          # Display the grade
         'specialite', 
-        'university__name',       # Display the specialty
+        'university__name',
+        'email',      # Display the specialty
     )
     
-    list_filter = ('grade', 'specialite')    # Add filters for grade and specialty
+    list_filter = ('grade', 'specialite')
+        # Add filters for grade and specialty
 
 # Register your models with the customized admin classes
 admin.site.register(Teacher, TeacherAdmin)

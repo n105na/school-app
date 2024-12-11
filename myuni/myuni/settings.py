@@ -32,7 +32,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-qp6)i_250^3gzpcv$^y
 DEBUG = os.getenv('DEBUG', 'false').lower() == 'true'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Application definition

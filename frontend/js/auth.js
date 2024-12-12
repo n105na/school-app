@@ -1,5 +1,13 @@
 // Function to log in a user
 const apiUrl = "https://school-app-8.onrender.com/"
+function getCSRFToken() {
+    const cookieValue = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("csrftoken="))
+        ?.split("=")[1];
+    return cookieValue || "";
+}
+
 function loginUser(email, password) {
     fetch(apiUrl + "api/user/login/", {
         method: "POST",
@@ -38,13 +46,7 @@ function loginUser(email, password) {
 }
 
 // Function to get the CSRF token from cookies
-function getCSRFToken() {
-    const cookieValue = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("csrftoken="))
-        ?.split("=")[1];
-    return cookieValue || "";
-}
+
 
 // Example usage of loginUser function (can be triggered by a form submission)
 document.getElementById("loginForm").addEventListener("submit", function (event) {

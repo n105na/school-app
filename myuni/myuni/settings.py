@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ["*"]
 <<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 =======
-ALLOWED_HOSTS = ['*']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
 >>>>>>> d045b7998789e7e768da681aaa3c2a8e80b9836c
 

@@ -1,6 +1,7 @@
 // Function to log in a user
+const apiUrl = "https://school-app-8.onrender.com/"
 function loginUser(email, password) {
-    fetch("http://127.0.0.1:8000/api/user/login/", {
+    fetch(apiUrl + "api/user/login/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -115,6 +115,7 @@ CSRF_COOKIE_SECURE = True  # Use True in production
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
+    "https://school-app-2.onrender.com",
    
      
         # Another possible variant
@@ -125,7 +126,8 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5500", 
     "http://localhost:5500",
-    "http://0.0.0.0:5500", # Frontend origin
+    "http://0.0.0.0:5500",
+    "https://school-app-2.onrender.com", # Frontend origin
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [

@@ -42,7 +42,7 @@ async function checkAdminAccess() {
 // Fetch all users and display them in a table
 async function fetchUsers() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/user/list/', {
+        const response = await fetch(apiUrl + 'api/user/list/', {
             method: 'GET',
             credentials: 'include',
         });
@@ -70,7 +70,7 @@ async function fetchUsers() {
 
 async function deleteUser(userId) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/user/${userId}/delete/`, {
+        const response = await fetch(apiUrl + `api/user/${userId}/delete/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ async function deleteUser(userId) {
 async function editUser(userId) {
     // Fetch the current user details
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/user/${userId}/`, {
+        const response = await fetch(apiUrl + `api/user/${userId}/`, {
             method: 'GET',
             credentials: 'include',
         });
@@ -134,7 +134,7 @@ async function submitEditForm() {
     console.log(`Updating user ${userId} with email: ${email} and role: ${role}`);
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/user/${userId}/update/`, {
+        const response = await fetch(apiUrl + `api/user/${userId}/update/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ function showMessage(message, isError = false) {
 fetchUsers();
 async function logout() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/user/logout/', {
+        const response = await fetch(apiUrl + 'api/user/logout/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

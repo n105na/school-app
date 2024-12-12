@@ -1,3 +1,4 @@
+const apiUrl = "https://school-app-2.onrender.com/"
 function getCSRFToken() {
     const cookieValue = document.cookie
         .split("; ")
@@ -8,7 +9,7 @@ function getCSRFToken() {
 
 async function checkAdminAccess() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/admin-dashboard/', {
+        const response = await fetch(apiUrl + 'api/admin-dashboard/', {
             method: 'GET',
             credentials: 'include',
             headers: {

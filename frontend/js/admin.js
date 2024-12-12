@@ -1,4 +1,4 @@
-const apiUrl = "https://school-app-2.onrender.com/"
+const apiUrl = "https://school-app-8.onrender.com/"
 function getCSRFToken() {
     const cookieValue = document.cookie
         .split("; ")

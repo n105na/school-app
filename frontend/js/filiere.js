@@ -1,11 +1,12 @@
 // Event listener for submitting the form to add a new filiere
+const apiUrl = "https://school-app-8.onrender.com/"
 document.getElementById('addFiliereForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const filiereName = document.getElementById('filiereName').value;
 
     try {
-        const response = await fetch('http://localhost:8000/api/filieres/create', { // No trailing slash here
+        const response = await fetch(apiUrl + 'api/filieres/create', { // No trailing slash here
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,7 +31,7 @@ document.getElementById('addFiliereForm').addEventListener('submit', async (e) =
 // Event listener for viewing all filieres when the button is clicked
 document.getElementById('viewFilieresBtn').addEventListener('click', async () => {
     try {
-        const response = await fetch('http://localhost:8000/api/filieres/', {
+        const response = await fetch(apiUrl + 'api/filieres/', {
             method: 'GET'
         });
 

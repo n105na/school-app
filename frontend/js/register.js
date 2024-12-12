@@ -1,3 +1,4 @@
+const apiUrl = "https://school-app-8.onrender.com/"
 function getCSRFToken() {
     const cookieValue = document.cookie
         .split("; ")
@@ -7,7 +8,7 @@ function getCSRFToken() {
 }
 async function checkRegisterAccess() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/register-student/', {
+        const response = await fetch(apiUrl + 'api/register-student/', {
             method: 'GET',
             credentials: 'include',
         });
@@ -39,7 +40,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const role = document.getElementById('role').value;
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/user/register-student/', {
+        const response = await fetch(apiUrl + 'api/user/register-student/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

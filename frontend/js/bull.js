@@ -1,4 +1,4 @@
-import { BASE_API_URL } from './config.js';
+import {BASE_API_URL} from './config.js';
 console.error("Script loaded successfully.");
 function getCSRFToken() {
     const cookieValue = document.cookie
@@ -28,6 +28,7 @@ async function searchStudent() {
     try {
         const response = await fetch(`${BASE_API_URL}/api/notes/student/bull/${numero}/`,{
         method: "GET",
+        mode: 'cors',
         headers: {
             "X-CSRFToken": token, // Include CSRF token
             "Content-Type": "application/json",

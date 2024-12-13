@@ -1,4 +1,4 @@
-import { BASE_API_URL } from './config.js';
+import {BASE_API_URL} from './config.js';
 function getCSRFToken() {
     const cookieValue = document.cookie
         .split("; ")

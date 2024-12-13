@@ -1,4 +1,4 @@
-
+import { BASE_API_URL } from './config.js';
 
 
 
@@ -54,7 +54,15 @@ function searchStudent() {
         });
 }
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+        searchButton.addEventListener('click', searchStudent);
+        console.log('Search button event listener attached');
+    } else {
+        console.error('Search button not found');
+    }
+});
 function displayPicture(pictureUrl) {
     const pictureContainer = document.getElementById('studentImageContainer');
     const img = document.getElementById('studentImage'); // Get the existing img tag

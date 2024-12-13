@@ -1,4 +1,4 @@
 // config.js
-const BASE_API_URL = 'https://school-app-8.onrender.com';
+const BASE_API_URL = 'http://127.0.0.1:8000';
 
-export { BASE_API_URL };
+export {BASE_API_URL};

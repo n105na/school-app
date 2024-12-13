@@ -51,6 +51,16 @@ async function searchStudent() {
         console.error('There was a problem with the fetch operation:', error);
     }
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+        searchButton.addEventListener('click', searchStudent);
+        console.log('Search button event listener attached');
+    } else {
+        console.error('Search button not found');
+    }
+});
+
 
 function populateStudentData(studentData) {
     const civiliteInput = document.querySelector(`input[name="civilite"][value="${studentData.civilite}"]`);

@@ -29,9 +29,17 @@ SECRET_KEY = 'django-insecure-qp6)i_250^3gzpcv$^y(ifc&s7y_)gmwu^5rph-$3b*y%=e8*2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
-CORS_ALLOW_ALL_ORIGINS = False
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "school-app-2.onrender.com"]
 
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",
+    "http://127.0.0.1:8000",
+    "http://localhost:5500",
+    "https://school-app-2.onrender.com",
+   
+
+]
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
@@ -108,37 +116,25 @@ MIDDLEWARE = [
 ]
 CSRF_COOKIE_HTTPONLY = False  # Correct this typo
 
-SESSION_COOKIE_SECURE = True  # Use True in production
+SESSION_COOKIE_SECURE = False  # Use True in production
   # Change to 'None' only if needed
-CSRF_COOKIE_SECURE = True  # Use True in production
+#CSRF_COOKIE_SECURE = True  # Use True in production
 
-SESSION_COOKIE_SAMESITE = None
-CSRF_COOKIE_SAMESITE = None
-
-
-
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",
-    "http://127.0.0.1:8000",
-    "http://localhost:5500",
-    "https://school-app-2.onrender.com",
-   
-     
-        # Another possible variant
+#SESSION_COOKIE_SAMESITE = None
+#CSRF_COOKIE_SAMESITE = None
 
 
-]
 
+
+
+CSRF_COOKIE_SAMESITE = 'Lax'  # Change 'None' to 'Lax' for improved security
+CSRF_COOKIE_SECURE = True  # Use True for HTTPS
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:5500", 
+    "https://school-app-2.onrender.com",
+    "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "http://127.0.0.1:8000",
-    "http://0.0.0.0:5500",
-    "https://school-app-2.onrender.com", # Frontend origin
 ]
-CORS_ORIGIN_WHITELIST = [
-    "https://school-app-2.onrender.com"
-]
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
     "GET",

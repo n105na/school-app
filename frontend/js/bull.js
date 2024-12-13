@@ -1,3 +1,4 @@
+import { BASE_API_URL } from './config.js';
 console.error("Script loaded successfully.");
 function getCSRFToken() {
     const cookieValue = document.cookie
@@ -25,7 +26,7 @@ async function searchStudent() {
     const numero = document.getElementById('numero').value;
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/notes/student/bull/${numero}/`,{
+        const response = await fetch(`${BASE_API_URL}/api/notes/student/bull/${numero}/`,{
         method: "GET",
         headers: {
             "X-CSRFToken": token, // Include CSRF token
@@ -98,7 +99,7 @@ function displayPicture(pictureUrl) {
     pictureContainer.innerHTML = '';
 
     const img = document.createElement('img');
-    img.src = pictureUrl ? `http://127.0.0.1:8000${pictureUrl}` : '/media/default-image.jpg';
+    img.src = pictureUrl ? `${BASE_API_URL}${pictureUrl}` : '/media/default-image.jpg';
     img.alt = 'Student Picture';
     img.style.width = '100px';
     img.style.height = '100px';
@@ -114,7 +115,7 @@ function populateBulletinContent(studentData) {
 
     // Set the picture for printing
     const printImage = document.getElementById('printStudentImage');
-    printImage.src = studentData.student_image ? `http://127.0.0.1:8000${studentData.student_image}` : '/media/default-image.jpg';
+    printImage.src = studentData.student_image ? `${BASE_API_URL}${studentData.student_image}` : '/media/default-image.jpg';
     printImage.alt = 'Student Picture';
 
     // Populate grades table for printing
@@ -165,7 +166,7 @@ async function logout() {
     try {
         console.log("Logout button clicked");
 
-        const response = await fetch('http://127.0.0.1:8000/api/user/logout/', {
+        const response = await fetch(`${BASE_API_URL}/api/user/logout/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -192,7 +193,7 @@ document.getElementById('sendEmailButton').addEventListener('click', async () =>
     const token = getCSRFToken();
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/notes/send_bulletin/${numero}/`, {
+        const response = await fetch(`${BASE_API_URL}/api/notes/send_bulletin/${numero}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

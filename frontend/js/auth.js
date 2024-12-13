@@ -1,5 +1,5 @@
 // Function to log in a user
-const apiUrl = "https://school-app-8.onrender.com/"
+import { BASE_API_URL } from './config.js';
 function getCSRFToken() {
     const cookieValue = document.cookie
         .split("; ")
@@ -9,7 +9,7 @@ function getCSRFToken() {
 }
 
 function loginUser(email, password) {
-    fetch(apiUrl + "api/user/login/", {
+    fetch(`${BASE_API_URL}/api/user/login/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-qp6)i_250^3gzpcv$^y(ifc&s7y_)gmwu^5rph-$3b*y%=e8*2
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

@@ -1,4 +1,4 @@
-const apiUrl = "https://school-app-8.onrender.com/"
+import { BASE_API_URL } from './config.js';
 function getCSRFToken() {
     const cookieValue = document.cookie
         .split("; ")
@@ -9,7 +9,7 @@ function getCSRFToken() {
 
 async function checkAdminAccess() {
     try {
-        const response = await fetch(apiUrl + 'api/admin-dashboard/', {
+        const response = await fetch(`${BASE_API_URL}/api/admin-dashboard/`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -42,7 +42,7 @@ async function checkAdminAccess() {
 // Fetch all users and display them in a table
 async function fetchUsers() {
     try {
-        const response = await fetch(apiUrl + 'api/user/list/', {
+        const response = await fetch(`${BASE_API_URL}/api/user/list/`, {
             method: 'GET',
             credentials: 'include',
         });
@@ -70,7 +70,7 @@ async function fetchUsers() {
 
 async function deleteUser(userId) {
     try {
-        const response = await fetch(apiUrl + `api/user/${userId}/delete/`, {
+        const response = await fetch(`${BASE_API_URL}/api/user/${userId}/delete/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ async function deleteUser(userId) {
 async function editUser(userId) {
     // Fetch the current user details
     try {
-        const response = await fetch(apiUrl + `api/user/${userId}/`, {
+        const response = await fetch(`${BASE_API_URL}/api/user/${userId}/`, {
             method: 'GET',
             credentials: 'include',
         });
@@ -134,7 +134,7 @@ async function submitEditForm() {
     console.log(`Updating user ${userId} with email: ${email} and role: ${role}`);
 
     try {
-        const response = await fetch(apiUrl + `api/user/${userId}/update/`, {
+        const response = await fetch('${BASE_API_URL}/api/user/${userId}/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ function showMessage(message, isError = false) {
 fetchUsers();
 async function logout() {
     try {
-        const response = await fetch(apiUrl + 'api/user/logout/', {
+        const response = await fetch(`${BASE_API_URL}/api/user/logout/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

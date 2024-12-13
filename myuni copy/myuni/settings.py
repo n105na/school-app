@@ -30,14 +30,8 @@ SECRET_KEY = 'django-insecure-qp6)i_250^3gzpcv$^y(ifc&s7y_)gmwu^5rph-$3b*y%=e8*2
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-CORS_ALLOW_ALL_ORIGINS = False
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-
-
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Application definition
 
@@ -65,7 +59,6 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 REST_FRAMEWORK = {
-    
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -112,16 +105,10 @@ SESSION_COOKIE_SECURE = True  # Use True in production
   # Change to 'None' only if needed
 CSRF_COOKIE_SECURE = True  # Use True in production
 
-SESSION_COOKIE_SAMESITE = None
-CSRF_COOKIE_SAMESITE = None
-
-
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
-    "http://127.0.0.1:8000",
     "http://localhost:5500",
-    "https://school-app-2.onrender.com",
    
      
         # Another possible variant
@@ -132,12 +119,7 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5500", 
     "http://localhost:5500",
-    "http://127.0.0.1:8000",
-    "http://0.0.0.0:5500",
-    "https://school-app-2.onrender.com", # Frontend origin
-]
-CORS_ORIGIN_WHITELIST = [
-    "https://school-app-2.onrender.com"
+    "http://0.0.0.0:5500", # Frontend origin
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
@@ -215,9 +197,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
-#STATICFILES_DIRS = [BASE_DIR / 'static']
-#STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

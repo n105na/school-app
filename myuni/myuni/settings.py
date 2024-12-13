@@ -111,6 +111,10 @@ SESSION_COOKIE_SECURE = True  # Use True in production
   # Change to 'None' only if needed
 CSRF_COOKIE_SECURE = True  # Use True in production
 
+SESSION_COOKIE_SAMESITE = None
+CSRF_COOKIE_SAMESITE = None
+
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",

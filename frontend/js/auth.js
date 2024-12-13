@@ -1,4 +1,4 @@
-// Function to log in a user
+
 import { BASE_API_URL } from './config.js';
 function getCSRFToken() {
     const cookieValue = document.cookie
